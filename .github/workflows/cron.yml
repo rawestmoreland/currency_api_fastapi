@@ -1,0 +1,14 @@
+name: Update API every 30 minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  make-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call endpoint
+        run: |
+          curl -X GET "${{ secrets.API_URL }}/latest/update/?access_token=${{ secrets.ACCESS_TOKEN }}"
