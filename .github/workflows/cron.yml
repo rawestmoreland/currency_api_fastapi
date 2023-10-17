@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Call endpoint
         run: |
-          response=$(curl -X GET "${{ secrets.API_URL }}/latest/update/?access_token=${{ secrets.ACCESS_TOKEN }}" --fail)
+          response=$(curl -i -X GET "${{ secrets.API_URL }}/latest/update/?access_token=${{ secrets.ACCESS_TOKEN }}" --fail --max-time 600)
           echo "Response: $response"
