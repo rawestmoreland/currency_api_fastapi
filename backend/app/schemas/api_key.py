@@ -13,7 +13,7 @@ class APIKeyIn(APIKeyBase):
     api_key: str
 
 
-class APIKeyInternal(APIKeyBase):
+class APIKeyInternal(BaseModel):
     id: int
     api_key: str
     user: UserOut

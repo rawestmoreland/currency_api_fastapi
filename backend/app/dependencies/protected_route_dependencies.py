@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from app.crud.api_key import get_api_key
 from app.database.session import get_db
-from app.schemas.api_key import APIKeyInDB
+from app.schemas.api_key import APIKeyInDB, APIKeyInternal
 
 
 async def verify_api_key(access_token: Optional[str] = Query(None), db: Session = Depends(get_db)):
@@ -20,11 +20,10 @@ async def verify_api_key(access_token: Optional[str] = Query(None), db: Session 
         raise HTTPException(
             status_code=429, detail='API Key usage limit exceeded')
 
-    return APIKeyInDB(id=api_key_data.id, user=api_key_data.user, api_key=access_token)
+    return APIKeyInternal(id=api_key_data.id, user=api_key_data.user, api_key=access_token)
 
 
 def verify_admin_api_key(access_token: Optional[str] = Query(None), db: Session = Depends(get_db)):
-    print(f"TOKEN: {access_token}")
     if not access_token:
         raise HTTPException(status_code=400, detail='API Key is required')
 
