@@ -3,6 +3,7 @@ name: Update API every 30 minutes
 on:
   schedule:
     - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   make-request:
