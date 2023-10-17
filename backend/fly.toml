@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for currency-alerter-api on 2023-10-07T13:47:54+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "currency-alerter-api"
+primary_region = "ord"
+
+[build]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 100
+    hard_limit = 300
+
+[[services]]
+  [services.concurrency]
+    type="requests"
+    soft_limit = 100
+    hard_limit = 300

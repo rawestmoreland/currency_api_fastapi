@@ -1,0 +1,13 @@
+{
+  "name": "currency_alerter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Richard Westmoreland <richard.westmoreland@scottscheapflights.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"cd frontend && yarn dev\" \"./start_backend.sh\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

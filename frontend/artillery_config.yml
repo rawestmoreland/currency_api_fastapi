@@ -1,0 +1,26 @@
+config:
+  target: https://currency-alerter-api.fly.dev
+  phases:
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 5
+      name: Warm up phase
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+
+scenarios:
+  - flow:
+      - get:
+          url: '/latest/?access_token=7b919bcf-1871-4240-8c0e-49b9f9f1d23d'
